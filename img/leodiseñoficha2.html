@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diseñador de hoja</title>
+<style>
+:root{--ink:#243047;--muted:#64748b;--line:#dbe2ea;--blue:#2563eb;--bg:#f3f6fa}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:#fff;border-bottom:1px solid var(--line);padding:15px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+h1{font-size:20px;margin:0}header p{margin:4px 0 0;color:var(--muted);font-size:13px}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+button,select,input{font:inherit}button{border:1px solid var(--line);background:#fff;border-radius:7px;padding:8px 11px;cursor:pointer;color:var(--ink)}
+button.primary{background:var(--blue);color:#fff;border-color:var(--blue)}button:hover{filter:brightness(.97)}
+main{display:grid;grid-template-columns:300px minmax(400px,1fr);min-height:calc(100vh - 72px)}
+aside{background:#fff;border-right:1px solid var(--line);padding:16px;overflow-y:auto;position:sticky;top:0;height:calc(100vh - 72px);align-self:start;overscroll-behavior:contain}
+.section{border-bottom:1px solid var(--line);padding:0 0 16px;margin-bottom:16px}
+h2{font-size:14px;margin:0 0 12px}label{display:block;font-size:12px;color:var(--muted);margin:9px 0 5px}
+input,select{width:100%;border:1px solid var(--line);border-radius:6px;padding:8px;background:#fff;color:var(--ink)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px}.inline{display:flex;gap:8px;align-items:center}.inline>*{flex:1}
+.measure{background:#f1f5f9;border-radius:7px;padding:10px;margin-top:10px;font-size:12px;line-height:1.7}
+.measure strong{font-size:14px;color:#0f172a}.hint{font-size:11px;color:var(--muted);line-height:1.5;margin-top:8px}
+.toolbar{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0}.toolbar button{padding:6px 9px;min-width:31px;font-weight:600}
+.toolbar input[type=color]{width:34px;height:32px;padding:2px}.toolbar select{width:auto;min-width:110px;padding:6px}
+.workspace{padding:24px;overflow:auto;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:14px;min-width:0}
+.zoombar{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap;background:#ffffffed;border:1px solid var(--line);border-radius:10px;padding:7px 10px;box-shadow:0 2px 8px #1e293b12}
+.zoombar button{padding:6px 10px}.zoombar input[type=range]{width:130px;padding:0}.zoom-value{font-size:12px;min-width:42px;text-align:center;font-weight:700;color:var(--ink)}
+.stage{position:relative;transform-origin:top center;margin:0 auto 30px}
+#paper{position:relative;background:white;box-shadow:0 4px 24px #1e293b22;overflow:hidden}
+.object{position:absolute;cursor:move;user-select:none}
+.shape{border:2px solid #222;background:transparent;min-width:2px;min-height:2px}
+.object.selected{outline:1px dashed var(--blue);outline-offset:3px}
+.textbox{min-width:30px;min-height:24px;padding:2px;white-space:pre-wrap;overflow-wrap:anywhere;outline:none;cursor:text;user-select:text}
+.textbox:focus{outline:1px dashed var(--blue);outline-offset:3px}
+.empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#94a3b8;pointer-events:none;font-size:14px}
+.status{font-size:12px;color:var(--muted);margin-top:9px}
+@media(max-width:850px){main{grid-template-columns:1fr}.workspace{padding:15px}aside{position:relative;top:auto;height:auto;max-height:48vh;overflow-y:auto;border-right:0;border-bottom:1px solid var(--line)}}
+@media print{header,aside,.zoombar{display:none!important}main{display:block}.workspace{padding:0;overflow:visible}.stage{margin:0;transform:none!important}#paper{box-shadow:none}}
+</style>
+</head>
+<body>
+<header>
+ <div><h1>Diseñador de hoja</h1><p>Configura el papel, agrega figuras y coloca texto con formato.</p></div>
+ <div class="actions"><button onclick="window.print()">Imprimir / Guardar como PDF</button><button class="primary" id="downloadBtn">Descargar diseño HTML</button></div>
+</header>
+<main>
+<aside>
+ <div class="section">
+  <h2>1. Tamaño de hoja</h2>
+  <label for="paperSize">Formato</label>
+  <select id="paperSize">
+   <option value="letter">Carta — 21.59 × 27.94 cm</option>
+   <option value="oficio">Oficio (México) — 21.59 × 34 cm</option>
+   <option value="legal">Legal — 21.59 × 35.56 cm</option>
+   <option value="a4">A4 — 21 × 29.7 cm</option>
+   <option value="custom">Personalizado</option>
+  </select>
+  <div class="grid2">
+   <div><label for="orientation">Orientación</label><select id="orientation"><option value="portrait">Vertical</option><option value="landscape">Horizontal</option></select></div>
+   <div><label for="unit">Unidad</label><select id="unit"><option value="cm">Centímetros</option><option value="mm">Milímetros</option></select></div>
+  </div>
+  <div class="grid2" id="customDims" style="display:none">
+   <div><label>Ancho (cm)</label><input id="paperW" type="number" min="1" step=".1" value="21.59"></div>
+   <div><label>Alto (cm)</label><input id="paperH" type="number" min="1" step=".1" value="27.94"></div>
+  </div>
+  <div class="measure">Tamaño actual<br><strong id="paperMeasure">21.59 × 27.94 cm</strong></div>
+ </div>
+ <div class="section">
+  <h2>2. Agregar figura</h2>
+  <div class="grid2">
+   <div><label>Tipo</label><select id="shapeType"><option value="rect">Rectángulo</option><option value="square">Cuadrado</option></select></div>
+   <div><label>Unidad de medida</label><select id="shapeUnit"><option value="cm">cm</option><option value="mm">mm</option></select></div>
+  </div>
+  <div class="grid2">
+   <div><label>Ancho</label><input id="shapeW" type="number" min=".1" step=".1" value="6"></div>
+   <div><label>Alto</label><input id="shapeH" type="number" min=".1" step=".1" value="4"></div>
+  </div>
+  <div class="grid2">
+   <div><label>Borde</label><input id="shapeColor" type="color" value="#222222"></div>
+   <div><label>Grosor (px)</label><input id="shapeStroke" type="number" min="0" max="20" value="2"></div>
+  </div>
+  <button class="primary" id="addShape" style="width:100%;margin-top:10px">＋ Agregar figura</button>
+  <div class="measure">Medidas de la figura<br><strong id="shapeMeasure">6 × 4 cm</strong><br><span id="shapeMeasurePx"></span></div>
+ </div>
+ <div class="section">
+  <h2>3. Agregar y editar texto</h2>
+  <button class="primary" id="addText" style="width:100%">＋ Agregar texto</button>
+  <label>Texto seleccionado</label>
+  <textarea id="textContent" rows="3" style="width:100%;border:1px solid var(--line);border-radius:6px;padding:8px;resize:vertical" placeholder="Escribe el texto aquí"></textarea>
+  <label>Tipografía</label>
+  <select id="fontFamily">
+   <option value="Arial, sans-serif">Arial</option><option value="Georgia, serif">Georgia</option>
+   <option value="'Times New Roman', serif">Times New Roman</option><option value="Verdana, sans-serif">Verdana</option>
+   <option value="Tahoma, sans-serif">Tahoma</option><option value="'Trebuchet MS', sans-serif">Trebuchet MS</option>
+   <option value="'Courier New', monospace">Courier New</option><option value="'Palatino Linotype', serif">Palatino</option>
+   <option value="Impact, sans-serif">Impact</option><option value="'Comic Sans MS', cursive">Comic Sans MS</option>
+  </select>
+  <div class="grid2">
+   <div><label>Tamaño (pt)</label><input id="fontSize" type="number" min="1" max="200" value="16"></div>
+   <div><label>Color</label><input id="fontColor" type="color" value="#111111"></div>
+  </div>
+  <div class="toolbar">
+   <button data-cmd="bold" title="Negrita"><b>N</b></button><button data-cmd="italic" title="Cursiva"><i>I</i></button>
+   <button data-cmd="underline" title="Subrayado"><u>S</u></button><button data-cmd="strikeThrough" title="Tachado"><s>T</s></button>
+  </div>
+  <div class="hint">Selecciona el texto dentro de la hoja para aplicar negrita, cursiva, subrayado o tachado. Los demás controles aplican al cuadro de texto seleccionado.</div>
+ </div>
+ <div class="section">
+  <h2>4. Elemento seleccionado</h2>
+  <div class="measure" id="selectionInfo">Ningún elemento seleccionado.</div>
+  <div class="grid2" style="margin-top:10px">
+   <button id="frontBtn">Traer al frente</button><button id="deleteBtn">Eliminar</button>
+  </div>
+  <div class="status" id="status">Haz clic en una figura o texto para seleccionarlo. Puedes arrastrarlo dentro de la hoja.</div>
+ </div>
+</aside>
+<section class="workspace"><div class="zoombar" aria-label="Controles de zoom"><button id="zoomOut" title="Alejar">−</button><input id="zoomRange" type="range" min="25" max="200" step="5" value="100" aria-label="Nivel de zoom"><span class="zoom-value" id="zoomValue">100%</span><button id="zoomIn" title="Acercar">＋</button><button id="zoom100">100%</button><button id="zoomFit">Ajustar</button></div><div class="stage" id="stage"><div id="paper"><div class="empty" id="emptyMsg">Tu hoja está lista. Agrega una figura o texto.</div></div></div></section>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const paper=$('paper'), stage=$('stage'); let selected=null, objects=[], nextId=1, zoom=1;
+const sizes={letter:[21.59,27.94],oficio:[21.59,34],legal:[21.59,35.56],a4:[21,29.7]};
+let paperCm=[...sizes.letter], scale=37.7952756;
+function fmt(n){return Number(n.toFixed(2)).toString()}
+function updatePaper(){
+ const key=$('paperSize').value; $('customDims').style.display=key==='custom'?'grid':'none';
+ if(key==='custom') paperCm=[Math.max(1,+$('paperW').value||21.59),Math.max(1,+$('paperH').value||27.94)];
+ else paperCm=[...sizes[key]];
+ if($('orientation').value==='landscape')paperCm.reverse();
+ const w=paperCm[0]*scale,h=paperCm[1]*scale;
+ paper.style.width=w+'px';paper.style.height=h+'px';
+ paper.style.position='absolute';paper.style.left='0';paper.style.top='0';
+ applyZoom();
+ $('paperMeasure').textContent=`${fmt(paperCm[0])} × ${fmt(paperCm[1])} cm`;
+ $('emptyMsg').style.display=objects.length?'none':'flex';
+}
+function cmFrom(v,u){return u==='mm'?v/10:v}
+
+function applyZoom(){
+ const w=paper.offsetWidth||paperCm[0]*scale,h=paper.offsetHeight||paperCm[1]*scale;
+ paper.style.transform=`scale(${zoom})`;paper.style.transformOrigin='top left';
+ stage.style.width=(w*zoom)+'px';stage.style.height=(h*zoom)+'px';
+ $('zoomRange').value=Math.round(zoom*100);$('zoomValue').textContent=Math.round(zoom*100)+'%';
+}
+function setZoom(value){zoom=Math.max(.25,Math.min(2,value));applyZoom()}
+$('zoomOut').onclick=()=>setZoom(zoom-.1);
+$('zoomIn').onclick=()=>setZoom(zoom+.1);
+$('zoomRange').oninput=()=>setZoom(+$('zoomRange').value/100);
+$('zoom100').onclick=()=>setZoom(1);
+$('zoomFit').onclick=()=>{const available=$('stage').parentElement.clientWidth-60;setZoom(Math.min(1.5,available/(paperCm[0]*scale)))};
+function updateShapePreview(){
+ let w=cmFrom(+$('shapeW').value||0,$('shapeUnit').value),h=cmFrom(+$('shapeH').value||0,$('shapeUnit').value);
+ if($('shapeType').value==='square')h=w;
+ $('shapeMeasure').textContent=`${fmt(w)} × ${fmt(h)} cm`;
+ $('shapeMeasurePx').textContent=`${fmt(w*10)} × ${fmt(h*10)} mm`;
+}
+function addObject(type,w,h){
+ const el=document.createElement('div');el.className='object '+(type==='shape'?'shape':'textbox');el.dataset.id=nextId++;
+ el.style.left='30px';el.style.top='30px';
+ if(type==='shape'){el.style.width=w*scale+'px';el.style.height=h*scale+'px';el.style.borderColor=$('shapeColor').value;el.style.borderWidth=$('shapeStroke').value+'px';}
+ else {el.contentEditable='true';el.textContent='Escribe aquí';el.style.fontFamily=$('fontFamily').value;el.style.fontSize='16pt';el.style.color=$('fontColor').value;el.style.minWidth='80px';}
+ paper.appendChild(el);objects.push(el);select(el);$('emptyMsg').style.display='none';return el;
+}
+function select(el){
+ if(selected)selected.classList.remove('selected');selected=el;
+ if(el){el.classList.add('selected');$('selectionInfo').innerHTML=el.classList.contains('shape')?
+ `Figura<br><strong>${fmt(el.offsetWidth/scale)} × ${fmt(el.offsetHeight/scale)} cm</strong><br>Posición: ${fmt(parseFloat(el.style.left)/scale)} × ${fmt(parseFloat(el.style.top)/scale)} cm`:
+ `Texto<br><strong>${fmt(el.offsetWidth/scale)} × ${fmt(el.offsetHeight/scale)} cm</strong><br>Posición: ${fmt(parseFloat(el.style.left)/scale)} × ${fmt(parseFloat(el.style.top)/scale)} cm`;
+ $('textContent').value=el.classList.contains('textbox')?el.innerText:'';
+ if(el.classList.contains('textbox')){ $('fontFamily').value=el.style.fontFamily||'Arial, sans-serif';$('fontColor').value=rgbToHex(getComputedStyle(el).color);$('fontSize').value=parseFloat(el.style.fontSize)||16; }
+ }else{$('selectionInfo').textContent='Ningún elemento seleccionado.';$('textContent').value='';}
+}
+function rgbToHex(c){let m=c.match(/\d+/g);return m?'#'+m.slice(0,3).map(x=>(+x).toString(16).padStart(2,'0')).join(''):'#111111'}
+$('addShape').onclick=()=>{let w=cmFrom(+$('shapeW').value,$('shapeUnit').value),h=cmFrom(+$('shapeH').value,$('shapeUnit').value);if($('shapeType').value==='square')h=w;if(!(w>0&&h>0))return alert('Especifica medidas mayores que cero.');let el=addObject('shape',w,h);el.style.left='40px';el.style.top='40px';select(el)};
+$('addText').onclick=()=>{let el=addObject('text');el.style.left='50px';el.style.top='50px';el.focus();};
+$('shapeType').onchange=()=>{if($('shapeType').value==='square')$('shapeH').value=$('shapeW').value;updateShapePreview()};
+['shapeW','shapeH','shapeUnit'].forEach(id=>$(id).addEventListener('input',updateShapePreview));
+$('shapeW').addEventListener('input',()=>{if($('shapeType').value==='square')$('shapeH').value=$('shapeW').value});
+['paperSize','orientation','paperW','paperH'].forEach(id=>$(id).addEventListener('change',updatePaper));
+$('textContent').addEventListener('input',()=>{if(selected?.classList.contains('textbox'))selected.innerText=$('textContent').value});
+$('fontFamily').onchange=()=>{if(selected?.classList.contains('textbox'))selected.style.fontFamily=$('fontFamily').value};
+$('fontColor').oninput=()=>{if(selected?.classList.contains('textbox'))selected.style.color=$('fontColor').value};
+$('fontSize').oninput=()=>{if(selected?.classList.contains('textbox'))selected.style.fontSize=Math.max(1,+$('fontSize').value)+'pt'};
+document.querySelectorAll('[data-cmd]').forEach(b=>b.onclick=()=>{if(!selected?.classList.contains('textbox'))return alert('Selecciona un cuadro de texto.');selected.focus();document.execCommand(b.dataset.cmd,false,null);$('textContent').value=selected.innerText});
+paper.addEventListener('mousedown',e=>{
+ const el=e.target.closest('.object');if(!el)return;select(el);
+ if(el.classList.contains('textbox')&&window.getSelection().toString())return;
+ const startX=e.clientX,startY=e.clientY,left=parseFloat(el.style.left)||0,top=parseFloat(el.style.top)||0;
+ function move(ev){let x=Math.max(0,Math.min(paper.clientWidth-el.offsetWidth,left+ev.clientX-startX)),y=Math.max(0,Math.min(paper.clientHeight-el.offsetHeight,top+ev.clientY-startY));el.style.left=x+'px';el.style.top=y+'px';selectInfoLive(el)}
+ function up(){window.removeEventListener('mousemove',move);window.removeEventListener('mouseup',up)}
+ window.addEventListener('mousemove',move);window.addEventListener('mouseup',up);if(!el.classList.contains('textbox'))e.preventDefault();
+});
+function selectInfoLive(el){$('selectionInfo').innerHTML=`${el.classList.contains('shape')?'Figura':'Texto'}<br><strong>${fmt(el.offsetWidth/scale)} × ${fmt(el.offsetHeight/scale)} cm</strong><br>Posición: ${fmt(parseFloat(el.style.left)/scale)} × ${fmt(parseFloat(el.style.top)/scale)} cm`}
+paper.addEventListener('click',e=>{if(e.target===paper)select(null)});
+$('deleteBtn').onclick=()=>{if(!selected)return;objects=objects.filter(x=>x!==selected);selected.remove();select(null);$('emptyMsg').style.display=objects.length?'none':'flex'};
+$('frontBtn').onclick=()=>{if(selected)paper.appendChild(selected)};
+$('downloadBtn').onclick=()=>{
+ const clone=document.documentElement.cloneNode(true);
+ clone.querySelectorAll('.selected').forEach(x=>x.classList.remove('selected'));
+ clone.querySelectorAll('script').forEach(s=>s.remove());
+ const script=document.createElement('script');
+ script.textContent=document.querySelector('script').textContent;
+ clone.querySelector('body').appendChild(script);
+ const blob=new Blob(['<!DOCTYPE html>\n'+clone.outerHTML],{type:'text/html;charset=utf-8'});
+ const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='diseno-hoja.html';a.click();URL.revokeObjectURL(a.href);
+};
+updatePaper();updateShapePreview();
+</script>
+</body></html>
