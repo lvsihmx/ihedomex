@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mi página</title>
+<style>
+html,body{margin:0;width:100%;height:100%;overflow:hidden;font-family:Arial,sans-serif}
+@keyframes imgFade{from{opacity:0}to{opacity:1}}@keyframes imgZoom{from{transform:scale(.65);opacity:.2}to{transform:scale(1);opacity:1}}@keyframes imgSlide{from{transform:translateX(-35px);opacity:0}to{transform:translateX(0);opacity:1}}@keyframes imgBounce{0%{transform:scale(.7);opacity:0}60%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}@keyframes imgRotate{from{transform:rotate(-12deg) scale(.8);opacity:0}to{transform:rotate(0) scale(1);opacity:1}}@keyframes imgFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}@keyframes imgPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}.anim-fade{animation:imgFade .8s ease both}.anim-zoom{animation:imgZoom .7s ease both}.anim-slide{animation:imgSlide .7s ease both}.anim-bounce{animation:imgBounce .8s ease both}.anim-rotate{animation:imgRotate .8s ease both}.anim-float{animation:imgFloat 2.2s ease-in-out infinite}.anim-pulse{animation:imgPulse 1.5s ease-in-out infinite}
+.canvas{position:absolute;left:50%;top:50%;width:1528px;height:732px;overflow:hidden;transform:translate(-50%,-50%) scale(var(--fit-scale,1));transform-origin:center center;background-color:#ffffff;background-image:linear-gradient(to right, transparent 0, transparent 39px, #ef4444 40px, transparent 41px), repeating-linear-gradient(to bottom, transparent 0, transparent 27px, #93c5fd 28px, transparent 29px), linear-gradient(to right, #ffffff, #dbeafe);background-size:auto, auto, auto;background-repeat:repeat;}
+.el2{position:absolute;left:107px;top:266px;width:24px;height:21px;box-sizing:border-box;background:#49f500;color:#111827;border:0px solid #080808;border-radius:0px;opacity:1;background:transparent;border:0;filter:none;}
+.el3{position:absolute;left:553px;top:89px;width:370px;height:52px;box-sizing:border-box;background:transparent;color:#111827;border:0px solid transparent;border-radius:0px;opacity:1;font-family:Trebuchet MS;font-size:28px;font-weight:400;font-style:normal;text-decoration:none;}
+.el4{position:absolute;left:345px;top:170px;width:1005px;height:48px;box-sizing:border-box;background:transparent;color:#111827;border:0px solid transparent;border-radius:0px;opacity:1;font-family:Tahoma;font-size:20px;font-weight:400;font-style:normal;text-decoration:none;}
+.el5{position:absolute;left:1077px;top:237px;width:362px;height:25px;box-sizing:border-box;background:transparent;color:#111827;border:0px solid transparent;border-radius:0px;opacity:1;font-family:Tahoma;font-size:11px;font-weight:400;font-style:normal;text-decoration:none;}
+.el6{position:absolute;left:108px;top:293px;width:24px;height:21px;box-sizing:border-box;background:#49f500;color:#111827;border:0px solid #080808;border-radius:0px;opacity:1;background:transparent;border:0;filter:none;}
+.el7{position:absolute;left:147px;top:270px;width:180px;height:16px;box-sizing:border-box;background:transparent;color:#111827;border:0px solid transparent;border-radius:0px;opacity:1;font-family:Arial;font-size:10px;font-weight:400;font-style:normal;text-decoration:none;}
+.el8{position:absolute;left:141px;top:292px;width:201px;height:17px;box-sizing:border-box;background:transparent;color:#111827;border:0px solid transparent;border-radius:0px;opacity:1;font-family:Arial;font-size:10px;font-weight:400;font-style:normal;text-decoration:none;}
+.el9{position:absolute;left:144px;top:324px;width:227px;height:21px;box-sizing:border-box;background:transparent;color:#111827;border:0px solid transparent;border-radius:0px;opacity:1;font-family:Arial;font-size:10px;font-weight:400;font-style:normal;text-decoration:none;}
+.el10{position:absolute;left:108px;top:318px;width:24px;height:21px;box-sizing:border-box;background:#49f500;color:#111827;border:0px solid #080808;border-radius:0px;opacity:1;background:transparent;border:0;filter:none;}
+.el11{position:absolute;left:521px;top:266px;width:24px;height:21px;box-sizing:border-box;background:#49f500;color:#111827;border:0px solid #080808;border-radius:0px;opacity:1;background:transparent;border:0;filter:none;}
+.el12{position:absolute;left:102px;top:232px;width:367px;height:28px;box-sizing:border-box;background:transparent;color:#111827;border:0px solid transparent;border-radius:0px;opacity:1;font-family:Tahoma;font-size:11px;font-weight:400;font-style:normal;text-decoration:none;}
+.el13{position:absolute;left:1132px;top:269px;width:339px;height:26px;box-sizing:border-box;background:transparent;color:#111827;border:0px solid transparent;border-radius:0px;opacity:1;font-family:Arial;font-size:10px;font-weight:400;font-style:normal;text-decoration:none;}
+.el14{position:absolute;left:522px;top:293px;width:24px;height:21px;box-sizing:border-box;background:#49f500;color:#111827;border:0px solid #080808;border-radius:0px;opacity:1;background:transparent;border:0;filter:none;}
+.el15{position:absolute;left:1137px;top:301px;width:335px;height:18px;box-sizing:border-box;background:transparent;color:#111827;border:0px solid transparent;border-radius:0px;opacity:1;font-family:Arial;font-size:10px;font-weight:400;font-style:normal;text-decoration:none;}
+.el16{position:absolute;left:517px;top:233px;width:559px;height:35px;box-sizing:border-box;background:transparent;color:#111827;border:0px solid transparent;border-radius:0px;opacity:1;font-family:Tahoma;font-size:11px;font-weight:400;font-style:normal;text-decoration:none;}
+.el17{position:absolute;left:1098px;top:294px;width:24px;height:21px;box-sizing:border-box;background:#49f500;color:#111827;border:0px solid #080808;border-radius:0px;opacity:1;background:transparent;border:0;filter:none;}
+.el18{position:absolute;left:1096px;top:264px;width:24px;height:21px;box-sizing:border-box;background:#49f500;color:#111827;border:0px solid #080808;border-radius:0px;opacity:1;background:transparent;border:0;filter:none;}
+.el19{position:absolute;left:564px;top:269px;width:221px;height:10px;box-sizing:border-box;background:transparent;color:#111827;border:0px solid transparent;border-radius:0px;opacity:1;font-family:Arial;font-size:10px;font-weight:400;font-style:normal;text-decoration:none;}
+.el20{position:absolute;left:567px;top:298px;width:227px;height:16px;box-sizing:border-box;background:transparent;color:#111827;border:0px solid transparent;border-radius:0px;opacity:1;font-family:Arial;font-size:10px;font-weight:400;font-style:normal;text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="canvas">
+  <!-- ELEMENTO el2 (shape) -->
+  <div class="el2" aria-label="Figura checkmark"><div style="width:100%;height:100%;background:#49f500;clip-path:polygon(0% 52%,12% 40%,35% 64%,85% 8%,100% 22%,36% 92%);"></div></div>
+  <!-- ELEMENTO el3 (text) -->
+  <div class="el3" style="display:block;box-sizing:border-box;text-align:center;font-family:Trebuchet MS;font-size:28px;font-weight:400;font-style:normal;white-space:pre-wrap;overflow:hidden;"><span class="rich-text-flow">Registro a examen IELTS</span></div>
+  <!-- ELEMENTO el4 (text) -->
+  <div class="el4" style="display:block;box-sizing:border-box;text-align:left;font-family:Tahoma;font-size:20px;font-weight:400;font-style:normal;white-space:pre-wrap;overflow:hidden;"><span class="rich-text-flow">Dependiendo de la situación en la que te encuentres serán los documentos que deberás subir.</span></div>
+  <!-- ELEMENTO el5 (text) -->
+  <div class="el5" style="display:block;box-sizing:border-box;text-align:center;font-family:Tahoma;font-size:11px;font-weight:400;font-style:normal;white-space:pre-wrap;overflow:hidden;"><span class="rich-text-flow">Eres menor de edad a la fecha del examen y cuentas con pasaporte</span></div>
+  <!-- ELEMENTO el6 (shape) -->
+  <div class="el6" aria-label="Figura checkmark"><div style="width:100%;height:100%;background:#49f500;clip-path:polygon(0% 52%,12% 40%,35% 64%,85% 8%,100% 22%,36% 92%);"></div></div>
+  <!-- ELEMENTO el7 (text) -->
+  <div class="el7" style="display:block;box-sizing:border-box;text-align:center;font-family:Arial;font-size:10px;font-weight:400;font-style:normal;white-space:pre-wrap;overflow:hidden;"><span class="rich-text-flow">Descarga y llena los dos documentos.</span></div>
+  <!-- ELEMENTO el8 (text) -->
+  <div class="el8" style="display:block;box-sizing:border-box;text-align:center;font-family:Arial;font-size:10px;font-weight:400;font-style:normal;white-space:pre-wrap;overflow:hidden;"><span class="rich-text-flow">Debes contar con tu acta de nacimiento.</span></div>
+  <!-- ELEMENTO el9 (text) -->
+  <div class="el9" style="display:block;box-sizing:border-box;text-align:center;font-family:Arial;font-size:10px;font-weight:400;font-style:normal;white-space:pre-wrap;overflow:hidden;"><span class="rich-text-flow">Debes contar con la identificación de tu escuela.</span></div>
+  <!-- ELEMENTO el10 (shape) -->
+  <div class="el10" aria-label="Figura checkmark"><div style="width:100%;height:100%;background:#49f500;clip-path:polygon(0% 52%,12% 40%,35% 64%,85% 8%,100% 22%,36% 92%);"></div></div>
+  <!-- ELEMENTO el11 (shape) -->
+  <div class="el11" aria-label="Figura checkmark"><div style="width:100%;height:100%;background:#49f500;clip-path:polygon(0% 52%,12% 40%,35% 64%,85% 8%,100% 22%,36% 92%);"></div></div>
+  <!-- ELEMENTO el12 (text) -->
+  <div class="el12" style="display:block;box-sizing:border-box;text-align:left;font-family:Tahoma;font-size:11px;font-weight:400;font-style:normal;white-space:pre-wrap;overflow:hidden;"><span class="rich-text-flow">Eres menor de edad a la fecha del  examen y no cuentas con pasaporte</span></div>
+  <!-- ELEMENTO el13 (text) -->
+  <div class="el13" style="display:block;box-sizing:border-box;text-align:left;font-family:Arial;font-size:10px;font-weight:400;font-style:normal;white-space:pre-wrap;overflow:hidden;"><span class="rich-text-flow">Debes contar con tu pasaporte vigente a la fecha del examen. </span></div>
+  <!-- ELEMENTO el14 (shape) -->
+  <div class="el14" aria-label="Figura checkmark"><div style="width:100%;height:100%;background:#49f500;clip-path:polygon(0% 52%,12% 40%,35% 64%,85% 8%,100% 22%,36% 92%);"></div></div>
+  <!-- ELEMENTO el15 (text) -->
+  <div class="el15" style="display:block;box-sizing:border-box;text-align:left;font-family:Arial;font-size:10px;font-weight:400;font-style:normal;white-space:pre-wrap;overflow:hidden;"><span class="rich-text-flow">Debes contar con tu pasaporte vigente a la fecha del examen. </span></div>
+  <!-- ELEMENTO el16 (text) -->
+  <div class="el16" style="display:block;box-sizing:border-box;text-align:left;font-family:Tahoma;font-size:11px;font-weight:400;font-style:normal;white-space:pre-wrap;overflow:hidden;"><span class="rich-text-flow">Eres mayor de edad a la fecha del examen. Debes presentar uno de estos documentos vigentes a la fecha del examen:</span></div>
+  <!-- ELEMENTO el17 (shape) -->
+  <div class="el17" aria-label="Figura checkmark"><div style="width:100%;height:100%;background:#49f500;clip-path:polygon(0% 52%,12% 40%,35% 64%,85% 8%,100% 22%,36% 92%);"></div></div>
+  <!-- ELEMENTO el18 (shape) -->
+  <div class="el18" aria-label="Figura checkmark"><div style="width:100%;height:100%;background:#49f500;clip-path:polygon(0% 52%,12% 40%,35% 64%,85% 8%,100% 22%,36% 92%);"></div></div>
+  <!-- ELEMENTO el19 (text) -->
+  <div class="el19" style="display:block;box-sizing:border-box;text-align:left;font-family:Arial;font-size:10px;font-weight:400;font-style:normal;white-space:pre-wrap;overflow:hidden;"><span class="rich-text-flow">INE</span></div>
+  <!-- ELEMENTO el20 (text) -->
+  <div class="el20" style="display:block;box-sizing:border-box;text-align:left;font-family:Arial;font-size:10px;font-weight:400;font-style:normal;white-space:pre-wrap;overflow:hidden;"><span class="rich-text-flow">Pasaporte </span></div>
+</div>
+<script>(()=>{const c=document.querySelector(".canvas"),W=1528,H=732;function fit(){const s=Math.min(window.innerWidth/W,window.innerHeight/H);c.style.setProperty("--fit-scale",String(s));}fit();window.addEventListener("resize",fit);})();document.querySelectorAll("select").forEach(sel=>sel.addEventListener("change",()=>{const u=sel.value;if(u && /^(https?:|mailto:|tel:)/i.test(u))location.href=u;}));document.querySelectorAll(".carousel-export").forEach(c=>{const im=c.querySelector("img"),src=im.getAttribute("src"),list=[][Array.from(document.querySelectorAll(".carousel-export")).indexOf(c)]||[];let i=0;const show=n=>{if(!list.length)return;i=(n+list.length)%list.length;im.src=list[i]};c.querySelector(".prev").onclick=()=>show(i-1);c.querySelector(".next").onclick=()=>show(i+1);if(list.length>1)setInterval(()=>show(i+1),Number(c.dataset.interval)*1000);});</script>
+</body>
+</html>
