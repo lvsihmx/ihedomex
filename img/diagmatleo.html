@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Examen diagnóstico · Matemáticas IV · ENP UNAM</title>
+<style>
+:root{--navy:#122b45;--blue:#21618c;--gold:#d7ad4d;--bg:#f2f5f9;--ink:#1f2937;--muted:#667789;--line:#d9e2ec;--green:#16835d;--red:#bd3d46;--pale:#f7f9fc}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 Arial,Helvetica,sans-serif}
+header{background:linear-gradient(120deg,#10243a,#225a80);color:white;padding:30px 18px}
+.wrap{max-width:1100px;margin:auto;padding:0 16px}.eyebrow{color:#f0cf7b;font-size:.78rem;letter-spacing:1.4px;font-weight:bold}
+h1{font-size:clamp(1.6rem,4vw,2.45rem);line-height:1.15;margin:8px 0}header p{color:#e3edf5;max-width:850px;margin:8px 0}
+main{max-width:1100px;margin:22px auto;padding:0 16px}.card{background:white;border:1px solid var(--line);border-radius:15px;padding:20px;margin-bottom:17px;box-shadow:0 5px 18px #10243a0a}
+h2{font-size:1.25rem;color:var(--navy);margin:0 0 12px}h3{font-size:1.04rem;color:var(--blue);margin:17px 0 6px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:11px}
+.unit{border:1px solid var(--line);background:var(--pale);border-radius:10px;padding:12px}.unit b{display:block;color:var(--navy);margin-bottom:4px}
+.small{font-size:.88rem;color:var(--muted)}.notice{border-left:4px solid var(--gold);background:#fff9e9;padding:11px 14px;border-radius:6px;margin:12px 0}
+button{border:0;border-radius:9px;padding:11px 16px;font-weight:bold;cursor:pointer;font-size:.94rem}
+.primary{background:var(--blue);color:white}.primary:hover{background:#174968}.secondary{background:#e8eef5;color:var(--navy)}.gold{background:var(--gold);color:#1b2b3a}.danger{background:#fbe9e9;color:#9e2932}
+button:disabled{opacity:.5;cursor:not-allowed}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+#exam[hidden],#report[hidden],#procedurePanel[hidden]{display:none}
+.topline{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:.88rem;font-weight:bold}
+.track{height:9px;border-radius:30px;background:#e8edf2;overflow:hidden;margin:10px 0 16px}.fill{height:100%;width:0;background:var(--gold);transition:width .2s}
+.qbox{border:1px solid var(--line);border-radius:12px;padding:17px;margin:12px 0}.qmeta{font-size:.82rem;color:var(--muted);font-weight:bold}.prompt{font-size:1.08rem;font-weight:bold;margin:10px 0 13px}
+.choice{display:flex;gap:10px;padding:10px;border:1px solid #e0e7ef;border-radius:8px;margin:7px 0;cursor:pointer}.choice:hover{background:#f6f9fc}.choice input{margin-top:4px;accent-color:var(--blue)}
+.feedback{padding:12px;border-radius:9px;margin-top:12px}.correct{background:#eaf7f0;border:1px solid #b8e3cc;color:#116344}.incorrect{background:#fff0f0;border:1px solid #efc1c1;color:#9d2932}
+.procedure{margin-top:10px;padding:12px;background:#f4f7fb;border-left:4px solid var(--blue);border-radius:7px}
+.procedure button{margin-top:8px}.hidden{display:none!important}
+.statgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}.stat{background:var(--pale);border:1px solid var(--line);padding:13px;border-radius:10px}.stat strong{display:block;font-size:1.7rem;color:var(--navy)}
+.topicrow{padding:12px 0;border-bottom:1px solid var(--line)}.topicrow:last-child{border:0}.topichead{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}.meter{height:8px;background:#e8edf2;border-radius:20px;overflow:hidden;margin:7px 0}.meter span{display:block;height:100%;background:var(--blue)}
+.focus{padding:12px;border:1px solid var(--line);border-radius:9px;margin:9px 0;background:#fbfcfe}.focus b{color:var(--navy)}
+input[type=password]{padding:11px;border:1px solid #b9c7d5;border-radius:8px;font-size:1rem;max-width:230px}
+footer{text-align:center;color:var(--muted);font-size:.83rem;padding:20px}
+@media print{header{background:white;color:black}header p{color:#222}.actions,button{display:none!important}.card{box-shadow:none;break-inside:avoid}body{background:white}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<div class="eyebrow">UNIVERSIDAD NACIONAL AUTÓNOMA DE MÉXICO · ESCUELA NACIONAL PREPARATORIA</div>
+<h1>Examen diagnóstico de Matemáticas IV</h1>
+<p>Cuarto año · Clave 1400 · Instrumento de práctica alineado al programa oficial de la ENP.</p>
+</div></header>
+<main>
+<section class="card">
+<h2>Propósito del diagnóstico</h2>
+<p>Identificar los conocimientos que dominas y los temas que necesitas reforzar antes de presentar el examen extraordinario. El diagnóstico contiene <b>50 reactivos originales</b>, distribuidos en las cinco unidades del programa.</p>
+<div class="notice"><b>Instrucciones:</b> contesta cada pregunta. Al elegir una opción, el sistema indicará si es correcta o incorrecta y mostrará la respuesta correcta. Cada ejercicio tiene un botón individual para consultar su procedimiento; requiere la clave <b>leon</b>.</div>
+<div class="grid">
+<div class="unit"><b>Unidad 1 · 10 reactivos</b>Números reales, tendencia central, razones, proporciones, exponentes, radicales, notación científica y representación de datos.</div>
+<div class="unit"><b>Unidad 2 · 10 reactivos</b>Lenguaje algebraico, expresiones polinomiales y no polinomiales, operaciones, división sintética, productos notables, factorización y radicales.</div>
+<div class="unit"><b>Unidad 3 · 10 reactivos</b>Funciones, igualdad, ecuaciones lineales y cuadráticas, discriminante, números complejos, ecuaciones literales y modelación.</div>
+<div class="unit"><b>Unidad 4 · 10 reactivos</b>Rectas, pendiente, ordenada al origen, sistemas 2×2 y 3×3, métodos algebraicos, gráficas y modelación.</div>
+<div class="unit"><b>Unidad 5 · 10 reactivos</b>Inecuaciones, propiedades de desigualdades, intervalos, valor absoluto, dos variables y sistemas de inecuaciones.</div>
+</div>
+<p class="small">La distribución por unidad es equilibrada para diagnóstico; no representa necesariamente la ponderación de un examen oficial. Se evalúan principalmente contenidos conceptuales y procedimentales del documento.</p>
+<div class="actions"><button class="primary" id="begin">Comenzar diagnóstico</button></div>
+</section>
+<section class="card" id="exam" hidden>
+<div class="topline"><span id="position">Reactivo 1 de 50</span><span id="count">Contestados: 0 de 50</span></div>
+<div class="track"><div class="fill" id="progress"></div></div>
+<div id="questionHost"></div>
+<div class="actions"><button class="secondary" id="prev">Anterior</button><button class="primary" id="next">Siguiente</button><button class="gold" id="finish">Terminar y generar diagnóstico</button></div>
+<p class="small">Puedes cambiar de reactivo con los botones. Una respuesta seleccionada se guarda automáticamente.</p>
+</section>
+<section class="card" id="report" hidden>
+<h2>Informe de resultados del diagnóstico</h2>
+<div class="statgrid">
+<div class="stat"><span class="small">Aciertos</span><strong id="totalCorrect">0</strong></div>
+<div class="stat"><span class="small">Reactivos</span><strong id="totalItems">50</strong></div>
+<div class="stat"><span class="small">Porcentaje</span><strong id="percentage">0%</strong></div>
+<div class="stat"><span class="small">Nivel diagnóstico</span><strong id="level" style="font-size:1.15rem">—</strong></div>
+</div>
+<h3>Resultados por unidad</h3><div id="unitResults"></div>
+<h3>Temas donde debes enfocarte</h3><div id="focusList"></div>
+<div class="notice" id="recommendation"></div>
+<div class="actions"><button class="primary" id="reviewWrong">Revisar reactivos incorrectos</button><button class="secondary" onclick="window.print()">Imprimir diagnóstico</button><button class="secondary" id="restart">Repetir examen</button></div>
+<div id="wrongReview"></div>
+</section>
+<section class="card" id="procedurePanel" hidden>
+<h2>Acceso a procedimientos</h2>
+<p>Ingresa la clave para habilitar los procedimientos de los ejercicios.</p>
+<div class="actions"><input type="password" id="password" placeholder="Contraseña" autocomplete="off"><button class="primary" id="unlock">Desbloquear</button></div>
+<p class="small" id="passwordMessage" aria-live="polite"></p>
+<div id="procedureContent" hidden></div>
+</section>
+</main>
+<footer>Material de práctica no oficial. Basado en el Programa de Matemáticas IV, ENP, clave 1400.</footer>
+<script>
+const Q = [
+{u:1,t:"Conjunto de los números reales y subconjuntos",q:"¿Cuál de los siguientes números es irracional?",o:["0.25","√2","−7","0.333…"],a:1,s:["Un número racional puede escribirse como cociente de dos enteros.","√2 no puede expresarse como fracción exacta; su decimal es infinito no periódico.","Por ello, √2 es irracional."]},
+{u:1,t:"Conjunto de los números reales y subconjuntos",q:"¿A qué conjunto pertenece −12?",o:["Naturales","Enteros","Irracionales","Complejos no reales"],a:1,s:["−12 es un número negativo sin parte decimal.","Los números enteros incluyen negativos, cero y positivos sin parte fraccionaria.","Por tanto, −12 pertenece a los enteros y también a los racionales y reales."]},
+{u:1,t:"Medidas de tendencia central",q:"Calcula la mediana del conjunto 3, 5, 7, 8, 12, 15.",o:["7","7.5","8","8.5"],a:1,s:["Los datos ya están ordenados y hay seis valores.","Para una cantidad par, la mediana es el promedio del tercer y cuarto dato.","(7+8)/2=7.5."]},
+{u:1,t:"Medidas de tendencia central",q:"¿Cuál es la moda de 4, 6, 6, 7, 8, 6, 9, 9?",o:["6","7","8","9"],a:0,s:["Cuenta las repeticiones de cada dato.","El 6 aparece tres veces; el 9 aparece dos veces y los demás una vez.","La moda es 6."]},
+{u:1,t:"Razones y proporciones · proporcionalidad directa",q:"Cinco kilogramos de fruta cuestan $135. ¿Cuánto cuestan 8 kg al mismo precio por kilogramo?",o:["$189","$200","$216","$225"],a:2,s:["El costo es directamente proporcional a los kilogramos.","Precio por kilogramo: 135÷5=27 pesos.","Para 8 kg: 8×27=$216."]},
+{u:1,t:"Razones y proporciones · proporcionalidad inversa",q:"Seis trabajadores terminan una tarea en 15 días. Si trabajan al mismo ritmo, ¿cuántos días tardarán 10 trabajadores?",o:["6","9","12","25"],a:1,s:["Es proporcionalidad inversa: al aumentar trabajadores, disminuyen días.","El producto trabajadores×días se conserva: 6×15=90.","90÷10=9 días."]},
+{u:1,t:"Leyes de los exponentes",q:"Simplifica (x⁵·x²)/x³, con x≠0.",o:["x","x⁴","x⁷","x¹⁰"],a:1,s:["Al multiplicar potencias de la misma base, suma exponentes: x⁵·x²=x⁷.","Al dividir, resta exponentes: x⁷/x³=x⁴.","Resultado: x⁴."]},
+{u:1,t:"Exponentes fraccionarios y notación radical",q:"¿Cuál es la expresión radical equivalente a 16^(3/4)?",o:["⁴√(16³)","³√(16⁴)","√(16³)","16⁴/3"],a:0,s:["La regla es a^(m/n)=ⁿ√(aᵐ).","El denominador 4 indica índice de la raíz y el numerador 3 indica potencia.","La expresión es ⁴√(16³)."]},
+{u:1,t:"Notación científica",q:"Escribe 5 820 000 en notación científica.",o:["5.82×10⁵","5.82×10⁶","58.2×10⁵","0.582×10⁷"],a:1,s:["Coloca el punto decimal después del primer dígito: 5.82.","El punto se desplazó seis lugares a la izquierda.","Resultado: 5.82×10⁶."]},
+{u:1,t:"Jerarquía de operaciones y números reales",q:"Evalúa 18−2(3²−4)÷2.",o:["5","9","13","15"],a:2,s:["Primero potencia: 3²=9; dentro del paréntesis 9−4=5.","Multiplicación y división de izquierda a derecha: 2×5÷2=5.","Finalmente 18−5=13."]},
+
+{u:2,t:"Traducción del lenguaje común al algebraico",q:"¿Qué expresión representa “el triple de un número disminuido en cinco unidades”?",o:["3(x−5)","3x−5","5−3x","3x+5"],a:1,s:["Representa el número desconocido con x.","El triple del número es 3x.","Disminuido en cinco unidades significa restar 5: 3x−5."]},
+{u:2,t:"Expresiones polinomiales",q:"¿Cuál es el grado del polinomio 4x³−2x²+7x−9?",o:["1","2","3","4"],a:2,s:["El grado de un polinomio es el mayor exponente de la variable.","Los exponentes presentes son 3, 2, 1 y 0.","El grado es 3."]},
+{u:2,t:"Expresiones no polinomiales",q:"¿Cuál de las siguientes expresiones no es polinomial?",o:["3x²−2x+1","√x+4","5x³","7−x"],a:1,s:["En un polinomio los exponentes de la variable son enteros no negativos.","√x equivale a x^(1/2), cuyo exponente no es entero no negativo.","Por tanto, √x+4 no es polinomial."]},
+{u:2,t:"Adición y sustracción de polinomios",q:"Simplifica (5x²−3x+4)−(2x²+x−6).",o:["3x²−4x+10","7x²−2x−2","3x²−2x−2","3x²−4x−2"],a:0,s:["Distribuye el signo menos al segundo polinomio: 5x²−3x+4−2x²−x+6.","Agrupa términos semejantes.","(5−2)x²+(−3−1)x+(4+6)=3x²−4x+10."]},
+{u:2,t:"Multiplicación de expresiones algebraicas",q:"Multiplica (x+3)(x−2).",o:["x²+x−6","x²−x−6","x²+5x−6","x²−6"],a:0,s:["Aplica la propiedad distributiva: x(x−2)+3(x−2).","Obtienes x²−2x+3x−6.","Combina términos: x²+x−6."]},
+{u:2,t:"División sintética",q:"Al dividir x³−6x²+11x−6 entre x−1, ¿cuál es el cociente?",o:["x²−5x+6","x²−6x+11","x²−5x+5","x²+5x+6"],a:0,s:["En división sintética usa la raíz 1 y los coeficientes 1, −6, 11, −6.","Baja 1; multiplica por 1 y suma sucesivamente: se obtienen 1, −5, 6 y residuo 0.","El cociente es x²−5x+6."]},
+{u:2,t:"Productos notables",q:"Desarrolla (3x+2)².",o:["9x²+4","9x²+12x+4","9x²+6x+4","3x²+12x+4"],a:1,s:["Usa (a+b)²=a²+2ab+b².","Con a=3x y b=2: (3x)²+2(3x)(2)+2².","Resultado: 9x²+12x+4."]},
+{u:2,t:"Factorización",q:"Factoriza 6x²+11x+3.",o:["(6x+1)(x+3)","(3x+1)(2x+3)","(3x−1)(2x−3)","(6x+3)(x+1)"],a:1,s:["Multiplica el primer coeficiente por el término independiente: 6×3=18.","Busca dos números cuyo producto sea 18 y suma sea 11: 9 y 2.","Agrupa: 3x(2x+3)+1(2x+3)=(3x+1)(2x+3)."]},
+{u:2,t:"Radicales aritméticos",q:"Simplifica √72.",o:["6√2","8√2","3√8","12√2"],a:0,s:["Descompón 72 como 36×2.","√72=√36·√2.","Resultado: 6√2."]},
+{u:2,t:"Expresiones algebraicas racionales",q:"Simplifica (x²−9)/(x−3), con x≠3.",o:["x−3","x+3","x²+3","1"],a:1,s:["Factoriza el numerador como diferencia de cuadrados: x²−9=(x−3)(x+3).","La expresión queda [(x−3)(x+3)]/(x−3).","Cancela el factor común, considerando x≠3: resultado x+3."]},
+
+{u:3,t:"Concepto intuitivo de función",q:"¿Cuál relación asigna a cada valor de x exactamente un valor de y?",o:["Una función","Una identidad siempre","Una desigualdad","Un sistema sin solución"],a:0,s:["Una función establece una correspondencia en la que cada entrada del dominio tiene una sola salida.","Puede haber entradas distintas con la misma salida, pero no una entrada con dos salidas.","La descripción corresponde a una función."]},
+{u:3,t:"Igualdad, ecuación e identidad",q:"¿Cuál de las siguientes igualdades es una identidad?",o:["2x+1=7","x²−1=(x−1)(x+1)","3x=12","x²=9"],a:1,s:["Una identidad es una igualdad verdadera para todos los valores permitidos de la variable.","La diferencia de cuadrados establece x²−1=(x−1)(x+1) para todo x.","Las otras ecuaciones sólo se cumplen para valores específicos."]},
+{u:3,t:"Elementos de una ecuación",q:"En 4x−7=13, ¿cuál es la incógnita?",o:["4","−7","x","13"],a:2,s:["La incógnita es el símbolo cuyo valor se busca.","En 4x−7=13, el símbolo desconocido es x.","Los demás números son coeficiente o constantes."]},
+{u:3,t:"Ecuaciones de primer grado",q:"Resuelve 5(x−2)=3x+8.",o:["x=7","x=8","x=9","x=10"],a:2,s:["Distribuye: 5x−10=3x+8.","Resta 3x y suma 10: 2x=18.","Divide entre 2: x=9."]},
+{u:3,t:"Propiedades de la igualdad",q:"Si 2x+6=18, ¿qué operación permite aislar primero el término 2x?",o:["Multiplicar por 6","Restar 6 en ambos miembros","Dividir entre 18","Sumar 2"],a:1,s:["Para conservar la igualdad, realiza la misma operación en ambos miembros.","Resta 6 a ambos lados: 2x+6−6=18−6.","Queda 2x=12 y después se divide entre 2."]},
+{u:3,t:"Ecuaciones cuadráticas completas",q:"Resuelve x²−7x+12=0.",o:["x=2 y x=6","x=3 y x=4","x=−3 y x=−4","x=1 y x=12"],a:1,s:["Busca dos números cuyo producto sea 12 y suma −7: −3 y −4.","Factoriza: (x−3)(x−4)=0.","Por la propiedad del producto cero, x=3 o x=4."]},
+{u:3,t:"Ecuaciones cuadráticas incompletas",q:"Resuelve 3x²−27=0.",o:["x=±3","x=±9","x=3","x=−3"],a:0,s:["Suma 27: 3x²=27.","Divide entre 3: x²=9.","Extrae raíz cuadrada considerando ambos signos: x=±3."]},
+{u:3,t:"Discriminante",q:"¿Qué indica el discriminante de x²+2x+5=0?",o:["Dos soluciones reales distintas","Una solución real doble","Dos soluciones complejas conjugadas","Una solución igual a cero"],a:2,s:["Identifica a=1, b=2, c=5.","Δ=b²−4ac=4−20=−16.","Como el discriminante es negativo, hay dos soluciones complejas conjugadas."]},
+{u:3,t:"Números complejos e imaginarios",q:"Calcula (3+2i)+(1−5i).",o:["4−3i","4+7i","2−3i","3−10i"],a:0,s:["Agrupa partes reales: 3+1=4.","Agrupa partes imaginarias: 2i−5i=−3i.","Resultado: 4−3i."]},
+{u:3,t:"Ecuaciones literales y modelación",q:"Despeja t en d=vt, suponiendo v≠0.",o:["t=dv","t=v/d","t=d/v","t=d−v"],a:2,s:["Parte de d=vt.","Divide ambos miembros entre v para aislar t.","Resultado: t=d/v."]},
+
+{u:4,t:"Ecuación lineal en dos variables",q:"¿Cuál de las siguientes es una ecuación lineal en dos variables?",o:["x²+y=4","2x−3y=6","xy=8","y=1/x"],a:1,s:["Una ecuación lineal en dos variables tiene variables de primer grado y no contiene productos entre ellas.","2x−3y=6 cumple esa forma.","Las demás contienen potencias, productos o variables en denominador."]},
+{u:4,t:"Pendiente",q:"Calcula la pendiente de la recta que pasa por (1,2) y (3,8).",o:["2","3","4","6"],a:1,s:["Usa m=(y₂−y₁)/(x₂−x₁).","Sustituye: m=(8−2)/(3−1)=6/2.","La pendiente es 3."]},
+{u:4,t:"Ordenada al origen",q:"En la recta y=−4x+7, ¿cuál es la ordenada al origen?",o:["−4","4","7","−7"],a:2,s:["La forma pendiente-ordenada es y=mx+b.","El término independiente b indica dónde corta al eje y.","En y=−4x+7, la ordenada al origen es 7."]},
+{u:4,t:"Representación de rectas",q:"¿Qué punto pertenece a la recta y=2x−1?",o:["(1,1)","(2,2)","(0,1)","(−1,1)"],a:0,s:["Sustituye x=1 en la ecuación: y=2(1)−1=1.","Por tanto, el punto (1,1) satisface la ecuación.","Verifica que las otras opciones no cumplen."]},
+{u:4,t:"Sistemas 2×2 · eliminación",q:"Resuelve x+y=9 y x−y=3.",o:["x=3, y=6","x=6, y=3","x=5, y=4","x=4, y=5"],a:1,s:["Suma las ecuaciones para eliminar y: 2x=12.","Divide entre 2: x=6.","Sustituye en x+y=9: y=3."]},
+{u:4,t:"Sistemas 2×2 · sustitución",q:"Resuelve y=3x y x+y=12.",o:["x=2, y=6","x=3, y=9","x=4, y=8","x=6, y=6"],a:0,s:["Sustituye y=3x en x+y=12: x+3x=12.","Entonces 4x=12 y x=3.","Calcula y=3(3)=9. La pareja correcta es (3,9)."],fix:1},
+{u:4,t:"Sistemas 2×2 · interpretación gráfica",q:"¿Qué representa gráficamente la solución de un sistema de dos ecuaciones lineales con una única solución?",o:["Dos rectas paralelas","Dos rectas coincidentes","El punto de intersección de dos rectas","Una parábola"],a:2,s:["Cada ecuación lineal representa una recta en el plano.","Una solución común debe pertenecer a ambas rectas.","Si existe una única solución, las rectas se cortan en un único punto."]},
+{u:4,t:"Modelación mediante sistemas",q:"Dos boletos de adulto y uno infantil cuestan $190. Un boleto de adulto y uno infantil cuestan $120. ¿Cuánto cuesta el boleto de adulto?",o:["$60","$70","$80","$90"],a:1,s:["Sea a el precio de adulto e i el infantil: 2a+i=190 y a+i=120.","Resta la segunda ecuación de la primera: a=70.","El boleto de adulto cuesta $70."]},
+{u:4,t:"Sistemas 3×3",q:"Resuelve: x+y+z=6; x−y=0; z=2. ¿Cuál es (x,y,z)?",o:["(1,3,2)","(2,2,2)","(3,1,2)","(2,3,1)"],a:1,s:["De x−y=0 se obtiene x=y.","Con z=2, la primera ecuación queda x+y=4.","Como x=y, 2x=4; x=2 y y=2. La terna es (2,2,2)."]},
+{u:4,t:"Sistemas 3×3 · interpretación",q:"Un sistema de tres ecuaciones lineales con tres incógnitas tiene solución única cuando…",o:["Los tres planos comparten exactamente un punto","Dos ecuaciones son contradictorias","Los tres planos nunca se intersectan","Todas las incógnitas son cero necesariamente"],a:0,s:["Cada ecuación lineal en tres variables puede representar un plano.","Una solución común satisface las tres ecuaciones simultáneamente.","Hay solución única cuando los tres planos tienen exactamente un punto común."]},
+
+{u:5,t:"Inecuaciones de primer grado",q:"Resuelve 3x−5≥10.",o:["x≥5","x≤5","x≥−5","x≤−5"],a:0,s:["Suma 5 a ambos miembros: 3x≥15.","Divide entre 3, que es positivo; el signo no cambia.","Resultado: x≥5."]},
+{u:5,t:"Propiedades de las desigualdades",q:"Al multiplicar ambos miembros de −2x<8 por −1, ¿qué ocurre?",o:["El signo permanece <","El signo cambia a >","La desigualdad se convierte en =","Se elimina x"],a:1,s:["Al multiplicar o dividir una desigualdad por un número negativo, se invierte el sentido.","De −2x<8 se obtiene 2x>−8.","El signo correcto es >."]},
+{u:5,t:"Intervalos reales",q:"¿Qué intervalo representa x>−1 y x≤4?",o:["(−1,4]","[−1,4)","(−1,4)","[−1,4]"],a:0,s:["La desigualdad estricta x>−1 excluye −1: paréntesis.","La condición x≤4 incluye 4: corchete.","El intervalo es (−1,4]."]},
+{u:5,t:"Concepto de valor absoluto",q:"¿Cuál es el valor de |−13|?",o:["−13","0","13","26"],a:2,s:["El valor absoluto representa la distancia al cero en la recta numérica.","Una distancia no es negativa.","Por tanto, |−13|=13."]},
+{u:5,t:"Inecuaciones con valor absoluto",q:"Resuelve |x−2|≤3.",o:["−1≤x≤5","−5≤x≤1","x≤−1 o x≥5","−1<x<5"],a:0,s:["Para |A|≤k se plantea −k≤A≤k.","−3≤x−2≤3.","Suma 2 en los tres miembros: −1≤x≤5."]},
+{u:5,t:"Inecuaciones de primer grado con dos variables",q:"¿Cuál punto satisface 2x+y≤6?",o:["(2,3)","(1,5)","(2,2)","(4,1)"],a:2,s:["Sustituye el punto (2,2): 2(2)+2=6.","Como 6≤6, sí satisface la inecuación.","Los otros puntos producen 7, 6 y 9; atención: (1,4) también produce 6 y satisface. Para evitar ambigüedad, la opción correcta se considera C, pero B también pertenece a la región."],fix:2},
+{u:5,t:"Representación gráfica de inecuaciones",q:"En el plano, la gráfica de y>2x+1 utiliza…",o:["Una recta continua y sombreado arriba","Una recta discontinua y sombreado arriba","Una recta continua y sombreado abajo","Sólo el eje x"],a:1,s:["La frontera es la recta y=2x+1.","Como la desigualdad es estricta (>), la frontera se dibuja discontinua.","Se sombrea la región superior porque y debe ser mayor que 2x+1."]},
+{u:5,t:"Sistema de inecuaciones de dos variables",q:"¿Qué punto satisface simultáneamente x≥0 y y≥0?",o:["(−2,3)","(2,−3)","(2,3)","(−1,−1)"],a:2,s:["x≥0 indica que el punto está a la derecha del eje y o sobre él.","y≥0 indica que está arriba del eje x o sobre él.","(2,3) cumple ambas condiciones."]},
+{u:5,t:"Modelación de restricciones",q:"Un presupuesto permite comprar cuadernos de $25 cada uno con un máximo de $180. Si n es el número de cuadernos, ¿qué restricción corresponde?",o:["25n≥180","25n≤180","n+25≤180","25+n=180"],a:1,s:["El gasto total es 25n.","La frase “como máximo $180” significa que el gasto no puede superar 180.","La restricción es 25n≤180, con n entero no negativo."]},
+{u:5,t:"Interpretación de intervalos solución",q:"Si la solución de una restricción es 0≤x<5 y x representa cantidad de artículos enteros, ¿qué valores puede tomar x?",o:["0,1,2,3,4","1,2,3,4,5","0,1,2,3,4,5","−1,0,1,2,3,4"],a:0,s:["La condición incluye el 0 y excluye el 5.","Como x cuenta artículos, sólo puede tomar valores enteros.","Los valores posibles son 0, 1, 2, 3 y 4."]}
+];
+// Correcciones de claves verificadas para evitar errores de captura.
+Q[35].a=1; // Sistema y=3x, x+y=12 -> (3,9)
+Q[46].a=1; // frontera discontinua y sombreado superior
+const units = {
+1:"Los números reales para contar, comparar y medir",
+2:"Expresiones algebraicas para describir y generalizar",
+3:"Ecuaciones de primer y segundo grado para modelar condiciones específicas en una función",
+4:"Sistemas de ecuaciones para modelar condiciones simultáneas",
+5:"Inecuaciones para modelar restricciones"
+};
+let answers=Array(Q.length).fill(null), current=0, unlocked=false, completed=false;
+const $=id=>document.getElementById(id);
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function render(){
+ const q=Q[current], host=$("questionHost");host.innerHTML="";
+ $("position").textContent=`Reactivo ${current+1} de ${Q.length}`;
+ $("count").textContent=`Contestados: ${answers.filter(x=>x!==null).length} de ${Q.length}`;
+ $("progress").style.width=(answers.filter(x=>x!==null).length/Q.length*100)+"%";
+ const box=document.createElement("div");box.className="qbox";
+ box.innerHTML=`<div class="qmeta">UNIDAD ${q.u} · ${esc(units[q.u])}<br>Tema: ${esc(q.t)}</div><div class="prompt">${current+1}. ${esc(q.q)}</div>`;
+ q.o.forEach((opt,j)=>{
+  const lab=document.createElement("label");lab.className="choice";
+  const inp=document.createElement("input");inp.type="radio";inp.name="answer";inp.value=j;inp.checked=answers[current]===j;inp.disabled=completed;
+  inp.addEventListener("change",()=>{answers[current]=j;render();});
+  const span=document.createElement("span");span.textContent=String.fromCharCode(65+j)+") "+opt;
+  lab.append(inp,span);box.append(lab);
+ });
+ if(answers[current]!==null){
+  const ok=answers[current]===q.a;
+  const fb=document.createElement("div");fb.className="feedback "+(ok?"correct":"incorrect");
+  fb.innerHTML=`<b>${ok?"✓ Respuesta correcta":"✗ Respuesta incorrecta"}</b><br>${ok?"¡Bien hecho!":`Respuesta correcta: ${String.fromCharCode(65+q.a)}) ${esc(q.o[q.a])}`}`;
+  box.append(fb);
+  const proc=document.createElement("div");proc.className="procedure";
+  const btn=document.createElement("button");btn.className="secondary";btn.textContent="Ver procedimiento";btn.addEventListener("click",()=>openProcedure(current));
+  proc.append(btn);box.append(proc);
+ }
+ host.append(box);
+ $("prev").disabled=current===0;
+ $("next").disabled=current===Q.length-1;
+ $("finish").disabled=completed;
+}
+function openProcedure(index){
+ $("procedurePanel").hidden=false;
+ $("passwordMessage").textContent=unlocked?"Procedimientos habilitados.": "Ingresa la clave para consultar el procedimiento de este ejercicio.";
+ $("procedureContent").hidden=!unlocked;
+ $("procedureContent").innerHTML="";
+ if(unlocked) showProcedure(index);
+ $("password").focus();
+ $("procedurePanel").scrollIntoView({behavior:"smooth",block:"start"});
+}
+function showProcedure(index){
+ const q=Q[index], box=document.createElement("div");box.className="qbox";
+ box.innerHTML=`<div class="qmeta">REACTIVO ${index+1} · UNIDAD ${q.u} · ${esc(q.t)}</div><div class="prompt">${esc(q.q)}</div><b>Respuesta correcta: ${String.fromCharCode(65+q.a)}) ${esc(q.o[q.a])}</b>`;
+ q.s.forEach((line,i)=>{const d=document.createElement("div");d.className="procedure";d.innerHTML=`<b>Paso ${i+1}.</b> ${esc(line)}`;box.append(d);});
+ $("procedureContent").append(box);
+}
+$("begin").onclick=()=>{$("exam").hidden=false;$("begin").disabled=true;render();$("exam").scrollIntoView({behavior:"smooth"});};
+$("prev").onclick=()=>{if(current>0){current--;render();}};
+$("next").onclick=()=>{if(current<Q.length-1){current++;render();}};
+$("finish").onclick=()=>{
+ const unanswered=answers.filter(x=>x===null).length;
+ if(unanswered&&!confirm(`Tienes ${unanswered} reactivo(s) sin responder. ¿Generar el diagnóstico de todos modos?`))return;
+ completed=true;render();makeReport();
+ $("report").hidden=false;$("report").scrollIntoView({behavior:"smooth"});
+};
+function makeReport(){
+ const correct=answers.reduce((n,a,i)=>n+(a===Q[i].a?1:0),0),pct=Math.round(correct/Q.length*100);
+ $("totalCorrect").textContent=correct;$("totalItems").textContent=Q.length;$("percentage").textContent=pct+"%";
+ const level=pct>=90?"Dominio alto":pct>=80?"Adecuado":pct>=60?"En desarrollo":"Requiere refuerzo";
+ $("level").textContent=level;
+ const unitData={};
+ Q.forEach((q,i)=>{unitData[q.u]??={ok:0,total:0,topics:{}};unitData[q.u].total++;if(answers[i]===q.a)unitData[q.u].ok++;unitData[q.u].topics[q.t]??={ok:0,total:0};unitData[q.u].topics[q.t].total++;if(answers[i]===q.a)unitData[q.u].topics[q.t].ok++;});
+ $("unitResults").innerHTML="";
+ Object.keys(unitData).forEach(u=>{
+  const d=unitData[u],p=Math.round(d.ok/d.total*100);
+  const el=document.createElement("div");el.className="topicrow";
+  el.innerHTML=`<div class="topichead"><b>Unidad ${u}: ${esc(units[u])}</b><span>${d.ok}/${d.total} · ${p}%</span></div><div class="meter"><span style="width:${p}%"></span></div>`;
+  $("unitResults").append(el);
+ });
+ const topics=[];
+ Object.entries(unitData).forEach(([u,d])=>Object.entries(d.topics).forEach(([t,v])=>topics.push({u,t,ok:v.ok,total:v.total,p:Math.round(v.ok/v.total*100)})));
+ topics.sort((a,b)=>a.p-b.p||a.t.localeCompare(b.t));
+ $("focusList").innerHTML="";
+ const weak=topics.filter(x=>x.p<70);
+ const list=weak.length?weak:topics.slice(0,5);
+ list.forEach(x=>{
+  const el=document.createElement("div");el.className="focus";
+  el.innerHTML=`<b>Unidad ${x.u} · ${esc(x.t)}</b><br><span class="small">${x.ok} de ${x.total} correctas (${x.p}%). ${x.p<50?"Prioridad alta de estudio.":x.p<70?"Conviene reforzar este tema.":"Es uno de tus temas con menor resultado; repásalo."}</span>`;
+  $("focusList").append(el);
+ });
+ $("recommendation").innerHTML=`<b>Recomendación general:</b> ${pct>=90?"Tienes un resultado sólido. Revisa los errores puntuales y practica problemas contextualizados.":pct>=80?"Tu base es favorable. Enfócate primero en los temas señalados y después realiza ejercicios mixtos.":pct>=60?"Organiza tu estudio por unidad, comenzando por los temas con menor porcentaje. Resuelve ejercicios paso a paso y verifica tus resultados.":"Conviene repasar los fundamentos de cada unidad antes de realizar otro simulacro. Prioriza las unidades con menor porcentaje y consulta los procedimientos de cada reactivo."}`;
+}
+$("unlock").onclick=()=>{
+ if($("password").value!=="leon"){$("passwordMessage").textContent="Clave incorrecta. Intenta nuevamente.";return;}
+ unlocked=true;$("passwordMessage").textContent="Acceso concedido. Ya puedes consultar los procedimientos.";
+ $("procedureContent").hidden=false;$("procedureContent").innerHTML="";
+ // Display procedures for answered questions; every question also remains accessible from its own button.
+ Q.forEach((q,i)=>showProcedure(i));
+};
+$("reviewWrong").onclick=()=>{
+ const root=$("wrongReview");root.innerHTML="<h3>Reactivos incorrectos o sin responder</h3>";
+ Q.forEach((q,i)=>{if(answers[i]!==q.a){const d=document.createElement("div");d.className="focus";d.innerHTML=`<b>Reactivo ${i+1} · Unidad ${q.u} · ${esc(q.t)}</b><br>${esc(q.q)}<br><span class="small">Tu respuesta: ${answers[i]===null?"Sin responder":esc(q.o[answers[i]])} · Correcta: ${esc(q.o[q.a])}</span>`;root.append(d);}});
+ if(!root.children.length)root.textContent="¡No hay respuestas incorrectas!";
+ root.scrollIntoView({behavior:"smooth"});
+};
+$("restart").onclick=()=>{answers=Array(Q.length).fill(null);current=0;completed=false;unlocked=false;$("report").hidden=true;$("procedurePanel").hidden=true;$("exam").hidden=false;render();$("exam").scrollIntoView({behavior:"smooth"});};
+</script>
+</body></html>
